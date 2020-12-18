@@ -1,0 +1,12 @@
+version: "2"
+services:
+  td:
+    image: trade-dangerously:local
+    build:
+      context: .
+    network_mode: host
+    volumes: 
+      - $HOME/.Xauthority:/root/.Xauthority:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    environment: 
+      - DISPLAY=${HOSTNAME}:0
