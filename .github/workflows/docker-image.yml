@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on:
+  schedule:
+    # Runs nightly at 00:00 UTC
+    - cron:  '0 0 * * *'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag trade-dangerous:$(date +%s)
