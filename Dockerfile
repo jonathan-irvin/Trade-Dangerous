@@ -1,7 +1,5 @@
-FROM python:3.9.1
-COPY . /
-ENV DISPLAY=host.docker.internal:0
-RUN pip install appJar \
-  && pip install -r requirements/dev.txt
-RUN python trade.py import -P eddblink -O clean,skipvend
-ENTRYPOINT [ "python", "trade.py", "gui"]
+FROM python:3.6
+ENV DISPLAY=host.docker.internal:0 TD_DATA=/home/traded/data TD_TMP=/home/traded/tmp
+RUN pip install --upgrade tradedangerous
+RUN trade import -P eddblink
+CMD [ "trade" ]

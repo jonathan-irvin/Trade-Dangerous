@@ -1,11 +1,13 @@
 version: "2"
 services:
   td:
-    image: trade-dangerously:local
+    image: trade-dangerous:local
+    container_name: td
     build:
       context: .
     network_mode: host
     volumes: 
+      - $HOME/traded:/home/traded:rw
       - $HOME/.Xauthority:/root/.Xauthority:rw
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment: 
